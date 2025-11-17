@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kawaii Question</title>
+<style>
+    body {
+        font-family: "Comic Sans MS", sans-serif;
+        background-color: #ffe6f7;
+        text-align: center;
+        padding-top: 60px;
+        overflow: hidden;
+    }
+
+    h1 {
+        color: #ff69b4;
+        font-size: 32px;
+        text-shadow: 2px 2px #ffcde1;
+    }
+
+    button {
+        padding: 12px 25px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #yesButton {
+        background-color: #ffb3d9;
+    }
+
+    #noButton {
+        background-color: #b3e0ff;
+        position: absolute;
+    }
+
+    #result {
+        font-size: 28px;
+        color: #ff4da6;
+        margin-top: 20px;
+        font-weight: bold;
+        line-height: 1.6;
+    }
+
+    /* Hujan love */
+    .heart {
+        position: fixed;
+        top: -20px;
+        font-size: 30px;
+        color: #ff4da6;
+        animation: fall 3s linear infinite;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div id="question">
+    <h1>Apakah Ima cantik? (๑˃ᴗ˂)ﻭ 💖</h1>
+    <button id="yesButton">Ya ✨</button>
+    <button id="noButton">Tidak 🙈</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+    const noBtn = document.getElementById("noButton");
+    const yesBtn = document.getElementById("yesButton");
+    const result = document.getElementById("result");
+    const question = document.getElementById("question");
+
+    // Tombol Tidak kabur
+    noBtn.addEventListener("click", function () {
+        let randomX = Math.floor(Math.random() * 300) - 150;
+        let randomY = Math.floor(Math.random() * 300) - 150;
+        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    });
+
+    // Jika klik Ya
+    yesBtn.addEventListener("click", function () {
+        question.style.display = "none";
+
+        result.innerHTML = `
+            awwwwww terimakasih banyak luv 💗(≧◡≦) ♡<br>
+            kamu bikin aku meleleh niii~ (ฅ>ω<*ฅ)🌸💞
+        `;
+
+        // Hujan love
+        setInterval(createHeart, 200);
+    });
+
+    // FUNGSI HUJAN LOVE
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💗";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+</script>
+
+</body>
+</html>
